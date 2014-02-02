@@ -6,6 +6,10 @@ float x = 0.0; //x軸の変数
 float y = 0.0; //y軸の変数
 float vx = random(-20, 20); //移動速度のランダム範囲 x
 float vy = random(-20, 20); // yのとき
+float r = 0.0; // 回転数値
+float vr = 0.05; // 回転速度
+float sc = 0.5;
+float vsc = 0.01;
 
 //luaと同じ？でグローバル変数みたいにする
 
@@ -13,7 +17,7 @@ float vy = random(-20, 20); // yのとき
 void setup() { //関数名をsetupに
 	//初期化したら勝手に実行してくれる
 	size(512, 512); // この中に書くのはおまじない	
-	rectMode(CENTER);
+	rectMode(CENTER); //基準点をセンターに
 }
 
 void draw() { // 1秒間に中の処理を60回呼び出す
@@ -31,5 +35,13 @@ void draw() { // 1秒間に中の処理を60回呼び出す
 	}
 	background(0, 0, 0, 255);
 	fill(255, 255, 255, al); //変数の呼出に頭に記号はなし
-	rect( x, y, 250, 250);
+	translate(x, y); // translateで移動を設定
+	rotate(r); //45度回転
+	r += vr; //translateとrotateの順番が逆だと、結果が大きく変わるよ | 回転してからの移動か、移動中の回転かによるから
+	sc += vsc;
+	if (sc >= 1 || sc < 0.5 ) {
+		vsc = -vsc;
+	}
+	scale(sc);
+	rect( 0, 0, 250, 250); //位置を0にしてるけど、translateで移動してる
 }
