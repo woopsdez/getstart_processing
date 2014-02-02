@@ -2,17 +2,18 @@
 
 float al = 0.0; //変数の定義と初期化
 float va = 1; //色変化の速度 変数
-float x = 0.0;
-float y = 0.0;
-float vx = random(0, 512);
-float vy = random(0, 512);
+float x = 0.0; //x軸の変数
+float y = 0.0; //y軸の変数
+float vx = random(-20, 20); //移動速度のランダム範囲 x
+float vy = random(-20, 20); // yのとき
 
 //luaと同じ？でグローバル変数みたいにする
 
 // animate 特別な関数があります。
 void setup() { //関数名をsetupに
 	//初期化したら勝手に実行してくれる
-	size(512, 512); // この中に書くのはおまじない		
+	size(512, 512); // この中に書くのはおまじない	
+	rectMode(CENTER);
 }
 
 void draw() { // 1秒間に中の処理を60回呼び出す
